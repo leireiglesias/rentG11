@@ -3113,3 +3113,20 @@ button:disabled,
     text-align: left;
     color: #FFF;
 }
+#deposito {
+    float: left;
+    width: 500px;
+    height: 300px;
+    margin: 10px;
+    border: 1px solid #999999;
+}
+#cajaimagenes {
+    float: left;
+    width: 320px;
+    margin: 10px;
+    border: 1px solid #999999;
+}
+#cajaimagenes > img {
+    float: left;
+    padding: 5px;
+}
