@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var nombre, telefono, DNI, email, expresion, contraseña, fuente, deposito;
+var nombre, telefono, DNI, email, contraseña, fuente, deposito, boton, solicitud, bd, transaccion, almacen,agregar;
 
 function iniciar() {
     nombre = document.getElementById("nombre");
@@ -13,6 +13,16 @@ function iniciar() {
     contraseña = document.getElementById("password");
     fuente = document.getElementById("imagen");
     deposito = document.getElementById("deposito");
+    boton = document.getElementById("registro");
+    solicitud = indexedDB.open("RentG");
+    solicitud.onsucces = function(e){
+        bd = e.target.result;
+    };
+    solicitud.onupgradeneeded = function (e){
+        bd = e.target.result;
+        bd.createObjectStore("Cliente", {KeyPath: "email"});
+    };
+    boton.addEventListener("click",agregarobjeto, false);
     nombre.addEventListener("input", validacionNombre);
     telefono.addEventListener("input", validacionTelefono);
     DNI.addEventListener("input", validacionDNI);
@@ -91,4 +101,17 @@ function soltar(evento) {
     deposito.innerHTML = evento.dataTransfer.getData("Text");
 }
 
+function agregarobjeto(){
+    transaccion = bd.transaction(["Cliente"], "readwrite");
+    almacen = transaccion.objectStore("Cliente"); 
+    agregar = almacen.add ({Nombre: nombre.value, Telefono: telefono.value, DNI: DNI.value, Email: email.value, Contraseña: contraseña.value, Foto: deposito.value});
+   
+    nombre.value = "";
+    telefono.value = "";
+    DNI.value = "";
+    Email.value = "";
+    Contraseña.value = "";
+    deposito.value = "";
+   
+}
 window.addEventListener("load", iniciar);
