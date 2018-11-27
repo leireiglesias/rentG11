@@ -18,19 +18,19 @@
                             <h3>Registro</h3>
                         </header>
                         <!--Añadir action al formulario-->
-                        <form name="frmRegistro" id="frmRegistro" method="get" action="registro.php">
+                        <form name="frmRegistro" id="frmRegistro" method="get">
                             <p>Nombre:<input type="text" name="name" id="nombre" />
                             <p>DNI:<input type="number" name="DNI" id="DNI" />
                             <p>Telefono:<input type="text" name="tfn" id="telefono" pattern="[67][0-9]{8}"/>    
-                            <p>Email:<input type="email" name="email" id="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="" />
+                            <p>Email:<input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="" />
                             <p>Contraseña:<input type="password" name="txtPassword" id="password" value="" required=""  maxlength="15" />
-                            <section id="deposito">
+<!--                            <section id="deposito">
                                 <p>Arrastre y suelte su foto aquí</p>
                             </section>
                             <section id="cajaimagenes">
                                 <img id="imagen" src="img/">
-                            </section>
-                            <p><button type="submit" class="button" id="registro">Registro</button></p>
+                            </section>-->
+                            <p><button type="button" class="button" onclick ="add();" id="registro">Registro</button></p>
                         </form>
 
                     </article>
