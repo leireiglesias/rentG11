@@ -16,13 +16,13 @@ function iniciar() {
     deposito = document.getElementById("deposito");
     boton = document.getElementById("registro");
     crearbd();
-    nombre.addEventListener("input", validacionNombre);
-    telefono.addEventListener("input", validacionTelefono);
-    DNI.addEventListener("input", validacionDNI);
-    email.addEventListener("input", validacionEmail);
-    contraseña.addEventListener("input", validacionContraseña);
+    formulario = document.querySelector("form[name='frmRegistro']");
+    formulario.addEventListener("invalid", validacion, true);
+    formulario.addEventListener("input", comprobar);
+    boton.addEventListener("click", enviarformulario);
     boton.addEventListener("click", agregarobjeto);
     localStorage.setItem('Correo','email');
+    
 //    fuente.addEventListener("dragstart", arrastrar);
 //    fuente.addEventListener("dragend", finalizar);
 //    deposito.addEventListener("dragenter", entrar);
@@ -31,48 +31,23 @@ function iniciar() {
 //        evento.preventDefault();
 //    });
 //    deposito.addEventListener("drop", soltar);
-    validacionNombre();
-    validacionTelefono();
-    validacionDNI();
-    validacionEmail();
-    validacionContraseña();
-}
-function validacionNombre() {
-    if (nombre.value === "") {
-        nombre.setCustomValidity("Inserte su nombre");
-    } else {
-        nombre.setCustomValidity("");
-    }
-}
-function validacionTelefono() {
-    if (telefono.value === "") {
-        telefono.setCustomValidity("Inserte su telefono");
-    } else {
-        telefono.setCustomValidity("");
-    }
-}
-function validacionDNI() {
-    if (DNI.value === "") {
-        DNI.setCustomValidity("Inserte su DNI");
-    } else {
-        DNI.setCustomValidity("");
-    }
-}
-function validacionEmail() {
-    if (email.value === "") {
-        email.setCustomValidity("Inserte su email");
-    } else {
-        email.setCustomValidity("");
-    }
-}
-function validacionContraseña() {
-    if (contraseña.value === "") {
-        contraseña.setCustomValidity("Inserte su contraseña");
-    } else {
-        contraseña.setCustomValidity("");
-    }
+    
 }
 
+function enviarformulario() {
+    var valido = formulario.checkValidity();
+    if (valido) {
+        formulario.submit();
+    }
+}
+function comprobar(evento) {
+    var elemento = evento.target;
+    if (elemento.validity.valid) {
+        elemento.style.background = "#FFFFFF";
+    } else {
+        elemento.style.background = "#FFDDDD";
+    }
+}
 
 function entrar(evento) {
     evento.preventDefault();
