@@ -149,7 +149,7 @@ function validacionCiudad() {
 }
 function agregarReserva(){
     
-    var email = correo.value;
+    var email = correo;
     var matricula = coche.value;        
     var FI = fInicio.value;
     var HI = hInicio.value;
@@ -216,7 +216,7 @@ function buscarRSFecha() {
 }
 function buscarCliente() {
     cajadatos.innerHTML = "";
-    var Cliente = correo.value;
+    var Cliente = correo;
 
     var transaccion = bd.transaction(["reserva"],"readonly");
     var almacen = transaccion.objectStore("reserva");

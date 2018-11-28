@@ -21,9 +21,9 @@ function iniciar() {
     formulario = document.querySelector("form[name='frmRegistro']");
     formulario.addEventListener("invalid", validacion, true);
     formulario.addEventListener("input", comprobar);
-//    boton.addEventListener("click", enviarformulario);
+    boton.addEventListener("click", enviarformulario);
     boton.addEventListener("click", agregarobjeto);
-    sessionStorage.setItem('Correo','email');
+    sessionStorage.setItem('Correo',email.value);
     
 //    fuente.addEventListener("dragstart", arrastrar);
 //    fuente.addEventListener("dragend", finalizar);

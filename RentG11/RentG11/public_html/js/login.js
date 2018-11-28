@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
-var email_log, contraseña_log;
 
+
+var email_log, contraseña_log, bd;
+var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 function iniciar() {
     email_log = document.getElementById("correoLogin");
     contraseña_log = document.getElementById("passLogin");
@@ -15,6 +17,7 @@ function iniciar() {
     formulario.addEventListener("input", comprobar);
     crearbd();
     boton.addEventListener("click", enviarformulario);
+    sessionStorage.setItem('Correo',email_log.value);
 }
 
 function validacion(evento) {
@@ -83,7 +86,7 @@ function validar() {
     var email = email_log.value;
     var password = contraseña_log.value;
 
-    var transaction = db.transaction(["cliente"]);
+    var transaction = bd.transaction(["cliente"]);
     var objectStore = transaction.objectStore("cliente");
     var request = objectStore.get(email);
     request.onerror = function (e) {
