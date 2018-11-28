@@ -26,29 +26,39 @@ function iniciar() {
     matriculaB = document.getElementById("matr");
     correoB = document.getElementById("emailCli");
     fechaB = document.getElementById("fechaRS");
+    formulario = document.querySelector("form[name='frmAlquiler']");
+    formulario.addEventListener("invalid", validacion, true);
+    formulario.addEventListener("input", comprobar);
     
     crearbd();
     
-    coche.addEventListener("input", validacionCoche);
-    fInicio.addEventListener("input", validacionfInicio);
-    hInicio.addEventListener("input", validacionhInicio);
-    fFin.addEventListener("input",validacionfFin);
-    hFin.addEventListener("input", validacionhFin);
-    ciudad.addEventListener("input",validacionCiudad);
+    boton.addEventListener("click", enviarformulario);
+    
+    
     boton.addEventListener("click",agregarReserva);
     botonRSCliente.addEventListener("click", buscarRSCliente);
     botonRSMatricula.addEventListener("click", buscarRSMatricula);
     botonRSFecha.addEventListener("click", buscarRSFecha);
     botonCliente.addEventListener("click", buscarCliente);
     
-    
-    validacionCoche();
-    validacionfInicio();
-    validacionhInicio();
-    validacionfFin();
-    validacionhFin();
-    validacionCiudad();
+
 }
+
+function enviarformulario() {
+    var valido = formulario.checkValidity();
+    if (valido) {
+        formulario.submit();
+    }
+}
+function comprobar(evento) {
+    var elemento = evento.target;
+    if (elemento.validity.valid) {
+        elemento.style.background = "#FFFFFF";
+    } else {
+        elemento.style.background = "#FFDDDD";
+    }
+}
+
 function crearbd() {
     DB = indexedDB.open("RentG11", 1);
     DB.onsuccess = function (e) {
