@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 
-/* global IDBKeyRange */
+/* global IDBKeyRange, sesionStorage */
 
 var DB, caja;
 var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 
 function iniciar() {
-    correo = localStorage.getItem('Correo');
+    correo = sessionStorage.getItem('Correo');
     coche = document.getElementById("coches");
     fInicio = document.getElementById("fechaI");
     hInicio = document.getElementById("horaI");
@@ -43,7 +43,10 @@ function iniciar() {
     
 
 }
-
+function validacion(evento) {
+    var elemento = evento.target;
+    elemento.style.background = "#FFDDDD";
+}
 function enviarformulario() {
     var valido = formulario.checkValidity();
     if (valido) {

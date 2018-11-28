@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/* global sesionStorage */
+
 var nombre, telefono, DNI, email, contraseña, fuente, deposito, boton, cliente, bd;
 var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 
@@ -19,9 +21,9 @@ function iniciar() {
     formulario = document.querySelector("form[name='frmRegistro']");
     formulario.addEventListener("invalid", validacion, true);
     formulario.addEventListener("input", comprobar);
-    boton.addEventListener("click", enviarformulario);
+//    boton.addEventListener("click", enviarformulario);
     boton.addEventListener("click", agregarobjeto);
-    localStorage.setItem('Correo','email');
+    sessionStorage.setItem('Correo','email');
     
 //    fuente.addEventListener("dragstart", arrastrar);
 //    fuente.addEventListener("dragend", finalizar);
@@ -32,6 +34,10 @@ function iniciar() {
 //    });
 //    deposito.addEventListener("drop", soltar);
     
+}
+function validacion(evento) {
+    var elemento = evento.target;
+    elemento.style.background = "#FFDDDD";
 }
 
 function enviarformulario() {

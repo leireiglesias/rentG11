@@ -17,6 +17,11 @@ function iniciar() {
     boton.addEventListener("click", enviarformulario);
 }
 
+function validacion(evento) {
+    var elemento = evento.target;
+    elemento.style.background = "#FFDDDD";
+}
+
 function enviarformulario() {
     var valido = formulario.checkValidity();
     if (valido) {
